@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+// thx for awesome button style = https://codepen.io/aruizh/pen/mdPMeGN
+
+$btn-color: hsla(0, 0%, 0%, 0.5);
+$btn-color2: hsla(186, 100%, 10%, 0.3);
+$btn-radius: 0.35rem;
+$btn-border-width: 2px;
+$btn-color-bg: hsl(0, 10%, 95%);
+$btn-offset: 0.6rem;
+$btn-transition: 0.3s;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23E0F2F2' cx='50' cy='0' r='50'/%3E%3Cg fill='%23daf0f1' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d3eef1' cx='50' cy='100' r='50'/%3E%3Cg fill='%23cdecf0' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c7eaf0' cx='50' cy='200' r='50'/%3E%3Cg fill='%23c0e8f1' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23bae6f1' cx='50' cy='300' r='50'/%3E%3Cg fill='%23b4e4f2' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23aee2f3' cx='50' cy='400' r='50'/%3E%3Cg fill='%23a9e0f4' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a3ddf5' cx='50' cy='500' r='50'/%3E%3Cg fill='%239edbf6' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%239ad8f7' cx='50' cy='600' r='50'/%3E%3Cg fill='%2396d5f8' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%2392d2fa' cx='50' cy='700' r='50'/%3E%3Cg fill='%238fcffb' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%238cccfc' cx='50' cy='800' r='50'/%3E%3Cg fill='%238ac9fd' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%2389c6fe' cx='50' cy='900' r='50'/%3E%3Cg fill='%2389c3ff' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%2389BFFF' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: contain;
+  font-family: 'Space Mono', monospace;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  background-color: hsla(0, 0%, 0%, 0.1);
+  padding: 3rem 3rem;
+  border-radius: 1rem;
+
+  .formula,
+  .output {
+    background-color: hsla(200, 100%, 50%, 0.3);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: right;
+    border-right: 3px solid hsla(0, 0%, 0%, 0.5);
+    border-bottom: 1px solid grey;
+    font-weight: 700;
+    max-lines: 1;
+  }
+
+  .formula {
+    color: rgb(215, 240, 240);
+  }
+
+  .output {
+    background-color: hsla(196, 36%, 75%, 0.765);
+    margin: 0.75rem 0;
+    font-size: 1.5rem;
+  }
+
+  .btn-container {
+    min-width: 40vw;
+    min-height: 40vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
+
+    .btn {
+      font-weight: 600;
+      border: solid $btn-border-width $btn-color;
+      outline: 0;
+      padding: 1rem 4rem;
+      font-size: 1.5rem;
+      letter-spacing: 0.08rem;
+      background-color: $btn-color-bg;
+      border-radius: $btn-radius;
+      position: relative;
+      cursor: pointer;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $btn-color2;
+        z-index: -1;
+        border-radius: $btn-radius;
+        border: solid $btn-border-width $btn-color;
+        transition: all $btn-transition cubic-bezier(0.07, -0.04, 0.35, 1.07);
+      }
+
+      &::after {
+        border: 0;
+        box-shadow: 0px 0px 0px $btn-border-width $btn-color;
+        top: $btn-offset;
+        left: $btn-offset;
+      }
+
+      &:hover {
+        &::after {
+          top: -#{$btn-offset};
+          left: -#{$btn-offset};
+          width: calc(100% + #{$btn-offset} * 2);
+          height: calc(100% + #{$btn-offset} * 2);
+        }
+      }
+    }
+
+    .btn-number {
+    }
+
+    .btn-operator {
+      font-weight: 900;
+      font-size: 2rem;
+      background-color: hsl(33, 83%, 55%);
+    }
+
+    #clear {
+      grid-area: 1 / 1 / 2 / 3;
+      background-color: hsl(0, 100%, 50%);
+    }
+
+    #equals {
+      grid-area: 4 / 4 / 6 / 5;
+      background-color: hsl(84, 100%, 59%);
+    }
+
+    #zero {
+      grid-area: 5 / 1 / 6 / 3;
+    }
+  }
+}
