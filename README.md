@@ -4,8 +4,8 @@ React calculator handling standard arithmetic with order-of-operations evaluatio
 
 ## Features
 
-- Digits 0–9, decimal point, and four operators (+, -, x, /) entered via buttons or keyboard
-- Chained-input buffering: operands and operators collected on a stack and evaluated on "="
+- Digits 0–9, decimal point, and operators (+, -, x, /) entered via buttons or keyboard; `Escape` clears, `Enter` evaluates, and `*` is accepted as `x`.
+- Chained-input buffering: operands and operators collected in an expression buffer and evaluated on `=`.
 - Order-of-operations arithmetic via `eval` on the accumulated expression (with `x` mapped to `*`)
 - Consecutive-operator handling: last operator wins; the formula display is trimmed accordingly
 - AC (All Clear) resets display, formula, and stack to initial state
